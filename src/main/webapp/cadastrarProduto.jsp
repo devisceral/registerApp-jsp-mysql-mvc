@@ -33,7 +33,6 @@
 
 			<label><strong>Disponível On-Line:</strong></label><input
 				type="checkbox" name="online">
-			<br>
 			<div>
 				<input id="bananaButton" type="submit" name="salvar"
 					value="Cadastrar Produto">
