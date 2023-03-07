@@ -34,8 +34,17 @@
 			<label><strong>Disponível On-Line:</strong></label><input
 				type="checkbox" name="online">
 			<div>
-				<input id="bananaButton" type="submit" name="salvar"
+				<input id="registerButton" type="submit" name="salvar"
 					value="Cadastrar Produto">
+			</div>
+			<br>
+			<div>
+				<%
+					String mensagem = (String) request.getAttribute("mensagem");
+					if(mensagem != null)
+						out.print(mensagem);
+					
+				%>
 			</div>
 		</form>
 	</main>

@@ -1,5 +1,6 @@
 package register.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,6 +26,7 @@ public class cadastrarProdutoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doPost(request, response);
+		
 	}
 
 	/**
@@ -37,6 +39,8 @@ public class cadastrarProdutoController extends HttpServlet {
 		String descricao = request.getParameter("descricao");
 		int quantidade;
 		double preco;
+		String mensagem;
+		RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrarProduto.jsp");
 		
 		if(descricao != null && !descricao.isEmpty()&& request.getParameter("quantidade") != null
 			&& !request.getParameter("quantidade").isEmpty() && request.getParameter("preco") != null
@@ -46,31 +50,17 @@ public class cadastrarProdutoController extends HttpServlet {
 			
 			preco = Double.parseDouble(request.getParameter("preco"));
 			
-			System.out.println(descricao);
-			System.out.println(quantidade);
-			System.out.println(preco);
 			boolean online = false;
 			
 			if(request.getParameter("online") != null && request.getParameter("online").equals("on"))
 				online = true;
-			System.out.println(online);
-	
-		}
+			
+			mensagem = "Produto Cadastrado com sucesso!";
+		}else
+			mensagem = "Os campos precisam ser preenchidos!";
+		request.setAttribute("mensagem", mensagem);
+		dispatcher.forward(request,response);
 		
-		
-		
-//		String nome = request.getParameter("descricao");
-//		int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-//		double preco = Double.parseDouble(request.getParameter("preco"));
-//		boolean online = false;
-//		
-//		if(request.getParameter("online") != null && request.getParameter("online").equals("on"))
-//			online = true;
-//		
-//		System.out.println(nome);
-//		System.out.println(quantidade);
-//		System.out.println(preco);
-//		System.out.println(online);
 	}
 
 }
